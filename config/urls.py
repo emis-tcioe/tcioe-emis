@@ -46,9 +46,15 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 
+def home_view(request):
+    from django.shortcuts import redirect
+
+# redirect to tcioe.edu.np
+    return redirect("https://tcioe.edu.np")
+
 # API URLS
 urlpatterns += [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", home_view, name="home"),
     # DRF auth token
     path("api-auth/", include("rest_framework.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
